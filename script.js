@@ -30,3 +30,15 @@ document.querySelector('form').addEventListener('submit', (e) => {
   emailInput.value = '';
   adminInput.checked = false;
 });
+document.querySelector('#empty-table').addEventListener('click', (e) => {
+  emptyTable();
+});
+
+function emptyTable() {
+  document
+    .querySelector('table#table-main')
+    .replaceChild(
+      document.createElement('tbody'),
+      document.querySelector('tbody#table-body')
+    );
+}
