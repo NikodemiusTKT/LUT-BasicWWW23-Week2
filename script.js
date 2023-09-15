@@ -1,7 +1,7 @@
 let userMatrixArray = [
-  ['Webmaster', 'webmaster@email.com', 'X'],
-  ['User123', 'user123@email.com', '-'],
-  ['AnotherUser123', 'anotheruser123@email.com', '-'],
+  ['Webmaster', 'webmaster@email.com', 'X', ''],
+  ['User123', 'user123@email.com', '-', ''],
+  ['AnotherUser123', 'anotheruser123@email.com', '-', ''],
 ];
 // helper function to replace the DOM table with the userMatrixArray
 const replaceHtmlTableWithMatrix = () => {
@@ -31,16 +31,22 @@ const adminStringSetter = (isAdmin) => {
 };
 function submitFormData() {
   let form = document.querySelector('form');
-  const { username, email, admin } = getFormInputs(form);
+  const { username, email, admin, image } = getFormInputs(form);
   // if either username or email inputs are empty then don't proceed
   if (username === '' || email === '') return;
   let userIndex = indexOfUser(username, userMatrixArray);
+  const imageBlob = URL.createObjectURL(image);
   // if username already exist then change existing values at the table
   if (userIndex >= 0) {
-    changeExistingUser(userIndex, { username, email, isAdmin: admin });
+    changeExistingUser(userIndex, {
+      username,
+      email,
+      isAdmin: admin,
+      imageBlob,
+    });
     return;
   }
-  userMatrixArray.push([username, email, adminStringSetter(admin)]);
+  userMatrixArray.push([username, email, adminStringSetter(admin), imageBlob]);
   // construct new HTML table from the newly change data matrix array
   replaceHtmlTableWithMatrix();
 }
@@ -65,10 +71,14 @@ function getFormInputs(form) {
   return formKeyValues;
 }
 // function to change existing user at the user data matrix and then replace dom with the new table
-function changeExistingUser(userIndex, { username, email, isAdmin: admin }) {
+function changeExistingUser(
+  userIndex,
+  { username, email, isAdmin: admin, imageBlob }
+) {
   userMatrixArray[userIndex][0] = username;
   userMatrixArray[userIndex][1] = email;
   userMatrixArray[userIndex][2] = adminStringSetter(admin);
+  userMatrixArray[userIndex][3] = imageBlob;
   replaceHtmlTableWithMatrix();
 }
 
@@ -86,7 +96,19 @@ function HTMLTableFrom2dArray(dataArray) {
     let tableRow = document.createElement('tr');
     for (let j = 0; j < dataRow.length; j++) {
       let tableCol1 = document.createElement('td');
-      tableCol1.textContent = dataArray[i][j];
+      // if we are on the 4th column we know that we need to create a img element
+      if (j === 3 && dataArray[i][j] !== '') {
+        let imgElem = document.createElement('img');
+        // set img elements max dimensions to 64x64 px
+        imgElem.setAttribute('width', 64);
+        imgElem.setAttribute('height', 64);
+        // we get the image src from the dataMatrixArray
+        imgElem.src = dataArray[i][j];
+        // append the img element to the table column
+        tableCol1.appendChild(imgElem);
+      } else {
+        tableCol1.textContent = dataArray[i][j];
+      }
       tableRow.appendChild(tableCol1);
       tableBody.appendChild(tableRow);
     }

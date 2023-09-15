@@ -14,11 +14,13 @@
           <th>Username</th>
           <th>Email</th>
           <th>Admin</th>
+          <th>Image</th>
         </tr>
       </thead>
       <tbody id="table-body"></tbody>
     </table>
-    <form>
+    <button id="empty-table">Empty Table</button>
+    <form enctype="multipart/form-data">
       <label for="uname">Username:</label><br />
       <input type="text" id="input-username" name="username" required /><br />
       <label for="email">Email:</label><br />
@@ -26,10 +28,10 @@
       <br />
       <input type="checkbox" id="input-admin" name="admin" />
       <label for="admin"> Am I admin?</label><br />
-
+      <input type="file" id="input-image" name="image" accept="image/*" />
+      <label for="image">Choose image to upload</label>
       <br />
       <input type="submit" value="Submit" id="submit-data" />
     </form>
-    <button id="empty-table">Empty Table</button>
   </body>
 </html>
