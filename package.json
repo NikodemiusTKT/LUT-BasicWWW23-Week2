@@ -1,0 +1,25 @@
+{
+  "name": "lut-basicwww23-week2",
+  "version": "1.0.0",
+  "description": "Week 2 exercise for LUT Introduction Web Programming course.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NikodemiusTKT/LUT-BasicWWW23-Week2.git"
+  },
+  "keywords": [
+    "lut",
+    "web",
+    "course",
+    "exercise"
+  ],
+  "author": "Teemu Tanninen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NikodemiusTKT/LUT-BasicWWW23-Week2/issues"
+  },
+  "homepage": "https://github.com/NikodemiusTKT/LUT-BasicWWW23-Week2#readme"
+}
