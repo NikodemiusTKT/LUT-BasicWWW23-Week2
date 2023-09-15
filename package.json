@@ -4,7 +4,8 @@
   "description": "Week 2 exercise for LUT Introduction Web Programming course.",
   "main": "script.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel index.html"
   },
   "repository": {
     "type": "git",
@@ -21,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/NikodemiusTKT/LUT-BasicWWW23-Week2/issues"
   },
-  "homepage": "https://github.com/NikodemiusTKT/LUT-BasicWWW23-Week2#readme"
+  "homepage": "https://github.com/NikodemiusTKT/LUT-BasicWWW23-Week2#readme",
+  "devDependencies": {
+    "parcel": "^2.9.3"
+  }
 }
